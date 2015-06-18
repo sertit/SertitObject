@@ -25,6 +25,11 @@ void otb::Wrapper::ObjectsRadiometricStatistics::DoInit()
 	SetParameterDescription("background","Background value. Needs to be different of any object ID.");
 	SetDefaultParameterInt("background",0);
 
+	SetDocExampleParameterValue("in","segmentation.shp");
+	SetDocExampleParameterValue("im","image_XS.tif");
+	SetDocExampleParameterValue("field","label");
+	SetDocExampleParameterValue("background","0");
+	
 	AddParameter(ParameterType_InputFilename, "out", "Output vector dataset");
 	SetParameterDescription("out", "Output vector dataset containing features attributes.");
 }
@@ -58,11 +63,11 @@ void otb::Wrapper::ObjectsRadiometricStatistics::DoExecute()
 
 	// Write label image from OGR
 	/*
-	WriterType::Pointer writer = WriterType::New(); 
-	writer->SetInput(m_OGRDataSourceRendering->GetOutput());	
-	writer->SetFileName("label_image.tif");
-	writer->Update();
-	*/
+	   WriterType::Pointer writer = WriterType::New(); 
+	   writer->SetInput(m_OGRDataSourceRendering->GetOutput());	
+	   writer->SetFileName("label_image.tif");
+	   writer->Update();
+	 */
 
 	// Label image from OGR to statistics label map
 	ConverterStatisticsType::Pointer converterStats = ConverterStatisticsType::New(); 
@@ -190,7 +195,7 @@ void otb::Wrapper::ObjectsRadiometricStatistics::DoExecute()
 			{
 				const StatisticsLabelObjectType *labelObjectStats = statistics->GetOutput()->GetLabelObject(label);
 				std::ostringstream fieldoss;
-			
+
 				fieldoss<<"meanB"<<i+1;
 				m_Feature.ogr().SetField(fieldoss.str().c_str(),labelObjectStats->GetMean());
 				fieldoss.str("");	
@@ -206,7 +211,7 @@ void otb::Wrapper::ObjectsRadiometricStatistics::DoExecute()
 				fieldoss<<"varB"<<i+1;
 				m_Feature.ogr().SetField(fieldoss.str().c_str(),labelObjectStats->GetVariance());
 				fieldoss.str("");	
-		
+
 				fieldoss<<"kurtB"<<i+1;
 				m_Feature.ogr().SetField(fieldoss.str().c_str(),labelObjectStats->GetKurtosis());
 				fieldoss.str("");	
@@ -222,3 +227,4 @@ void otb::Wrapper::ObjectsRadiometricStatistics::DoExecute()
 		}
 	}
 }
+
