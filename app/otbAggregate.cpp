@@ -17,7 +17,7 @@ void otb::Wrapper::Aggregate::DoInit()
 	SetParameterDescription( "in", "Pixel-based image classification." );
 
 	AddParameter(ParameterType_InputImage,  "inseg",    "Labeled image");
-	SetParameterDescription( "inseg", "Labeled image representing a segmentation of an image.");	
+	SetParameterDescription( "inseg", "Labeled image representing a segmentation of an image.");
 
 	AddParameter(ParameterType_OutputImage, "outim", "Output raster");
 	SetParameterDescription( "outim", "Output raster, object-oriented image classification.");
@@ -60,13 +60,13 @@ void otb::Wrapper::Aggregate::DoExecute()
 	otbAppLogINFO(<<"Minimum: "<<minimum);
 
 	// Filtre LabelImage vers LabelMap(StatisticsLabelObject)
-	ConverterStatisticsType::Pointer converterStats = ConverterStatisticsType::New(); 
-	converterStats->SetInput(labelIn); 
-	converterStats->SetBackgroundValue(0); 
+	ConverterStatisticsType::Pointer converterStats = ConverterStatisticsType::New();
+	converterStats->SetInput(labelIn);
+	converterStats->SetBackgroundValue(0);
 	converterStats->Update();
 
 	// Calcul des statistiques par objet de la LabelMap
-	StatisticsFilterType::Pointer statistics = StatisticsFilterType::New(); 
+	StatisticsFilterType::Pointer statistics = StatisticsFilterType::New();
 	statistics->SetInput(converterStats->GetOutput());
 	statistics->SetFeatureImage(imageIn);
 	statistics->SetNumberOfBins(nbclass);
@@ -106,7 +106,7 @@ void otb::Wrapper::Aggregate::DoExecute()
 	otbAppLogINFO(<<"Vectorization...");
 
 	//Définition du shapefile
-	const char * shapefile   = GetParameterString("out").c_str();
+  const std::string shapefile = GetParameterString("out");
 
 	otb::ogr::DataSource::Pointer ogrDS;
 	otb::ogr::Layer layer(NULL, false);
@@ -120,8 +120,8 @@ void otb::Wrapper::Aggregate::DoExecute()
 	std::vector<std::string> options;
 
 	ogrDS = otb::ogr::DataSource::New(shapefile, otb::ogr::DataSource::Modes::Overwrite);
-	std::string layername = itksys::SystemTools::GetFilenameName(shapefile);
-	std::string extension = itksys::SystemTools::GetFilenameLastExtension(shapefile);
+	std::string layername = itksys::SystemTools::GetFilenameName(shapefile.c_str());
+	std::string const extension = itksys::SystemTools::GetFilenameLastExtension(shapefile.c_str());
 	layername = layername.substr(0,layername.size()-(extension.size()));
 	layer = ogrDS->CreateLayer(layername, &oSRS, wkbMultiPolygon, options);
 
@@ -132,8 +132,8 @@ void otb::Wrapper::Aggregate::DoExecute()
 
 	// Write label image
 	/*
-	WriterType::Pointer writer = WriterType::New(); 
-	writer->SetInput(m_ChangeLabelFilter->GetOutput());	
+	WriterType::Pointer writer = WriterType::New();
+	writer->SetInput(m_ChangeLabelFilter->GetOutput());
 	writer->SetFileName("label_image.tif");
 	writer->Update();
 	*/
@@ -163,9 +163,3 @@ void otb::Wrapper::Aggregate::DoExecute()
 
 	otbAppLogINFO(<<"Processing complete.");
 }
-
-
-
-
-
-
