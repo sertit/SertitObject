@@ -22,7 +22,7 @@ Contact
 
 For any issues regarding this module please contact Arnaud Durand.
 
-arnaud.durand@sertit.u-strasbg.fr
+arnaud.durand@unistra.fr
 
 SERTIT - University of Strasbourg
 http://sertit.u-strasbg.fr
