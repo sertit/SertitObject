@@ -2,7 +2,7 @@ otb_module_test()
 
 	otb_test_application(NAME apSertitObjectAggregate
 			APP Aggregate
-			OPTIONS -in ${INPUTDATA}/QB_Toulouse_Ortho_XS.tif
+			OPTIONS -in ${INPUTDATA}/QB_Toulouse_Ortho_XS_6class_knn.tif
 			-inseg ${INPUTDATA}/QB_Toulouse_ortho_labelImage.tif
 			-out ${TEMP}/apSertitObjectAggregate.shp
 			-outim ${TEMP}/apSertitObjectAggregateRaster.tif int16
