@@ -19,7 +19,7 @@ void otb::Wrapper::ObjectsRadiometricStatistics::DoInit()
 
 	AddParameter(ParameterType_String,"field","ID field");
 	SetParameterDescription("field","Name of the field containing object IDs.");
-	SetParameterString("field","label");
+	SetParameterString("field","label", false);
 
 	AddParameter(ParameterType_Int,"background", "Background value");
 	SetParameterDescription("background","Background value. Needs to be different of any object ID.");
