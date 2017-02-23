@@ -14,6 +14,5 @@ otb_module_test()
 			-im ${INPUTDATA}/QB_Toulouse_Ortho_XS.tif
 			-field "label"
 			-background 0
-			-out ${TEMP}/apSertitObjectRadiometricStatistics.shp
 			)
 
