@@ -29,9 +29,10 @@ void otb::Wrapper::ObjectsRadiometricStatistics::DoInit()
 	SetDocExampleParameterValue("im","image_XS.tif");
 	SetDocExampleParameterValue("field","label");
 	SetDocExampleParameterValue("background","0");
-	
-	AddParameter(ParameterType_InputFilename, "out", "Output vector dataset");
+	/*
+	AddParameter(ParameterType_OutputFilename, "out", "Output vector dataset");
 	SetParameterDescription("out", "Output vector dataset containing features attributes.");
+	*/
 }
 
 void otb::Wrapper::ObjectsRadiometricStatistics::DoUpdateParameters()
