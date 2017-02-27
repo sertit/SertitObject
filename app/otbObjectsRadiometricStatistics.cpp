@@ -219,7 +219,9 @@ void otb::Wrapper::ObjectsRadiometricStatistics::DoExecute()
 
 				fieldoss<<"skewB"<<i+1;
 				m_Feature.ogr().SetField(fieldoss.str().c_str(),labelObjectStats->GetSkewness());
-				fieldoss.str("");	
+				fieldoss.str("");
+				
+				layer.SetFeature(m_Feature);
 			}
 			else
 			{
