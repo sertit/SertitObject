@@ -20,9 +20,8 @@ This code is provided under the CeCILL-B free software license agreement.
 Contact
 =======
 
-For any issues regarding this module please contact Arnaud Durand.
-
-arnaud.durand@unistra.fr
+For any issues regarding this module please contact us:
+sertit@sertit.u-strasbg.fr
 
 SERTIT - University of Strasbourg
 http://sertit.u-strasbg.fr
