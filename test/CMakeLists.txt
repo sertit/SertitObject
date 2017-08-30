@@ -16,3 +16,4 @@ otb_module_test()
 			-background 0
 			)
 
+set_tests_properties ( apSertitObjectRadiometricStatistics PROPERTIES DEPENDS apSertitObjectAggregate)
